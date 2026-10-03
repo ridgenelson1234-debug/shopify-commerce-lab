@@ -1,0 +1,26 @@
+flowchart LR
+  subgraph WH["webhook/ (receiver)"]
+    A[Shopify delivery] --> B{HMAC over raw body<br/>constant-time compare}
+    B -- invalid --> R401[401, nothing stored]
+    B -- valid --> C[Parse JSON, build dedupe key<br/>shop + event id]
+    C --> D{EventStore.claim}
+    D -- done --> R200D[200 duplicate]
+    D -- in flight --> R409[409, Shopify redelivers]
+    D -- claimed --> E[Handler with retry<br/>exponential backoff + jitter]
+    E -- success --> F[EventStore.complete, 200]
+    E -- N attempts failed --> G[DeadLetterSink.put, 202]
+  end
+
+  subgraph AB["admin-bulk/ (updater)"]
+    S[Spec: metafields + collection adds] --> V[Validate, hash spec]
+    V --> K[Load checkpoint]
+    K --> P[Read current state<br/>nodes and collection pages]
+    P --> X{Mode}
+    X -- dry-run --> DF[Diff + report, zero writes]
+    X -- apply --> W[Write in batches<br/>skip equal values]
+    W --> CP[Save checkpoint after each batch]
+    W --> UE{userErrors?}
+    UE -- yes --> ISO[Retry items singly,<br/>fail only the bad one]
+    CL[Cost-aware client<br/>wait on bucket and THROTTLED] -.-> P
+    CL -.-> W
+  end

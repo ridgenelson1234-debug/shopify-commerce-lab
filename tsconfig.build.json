@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "dist",
+    "rootDir": ".",
+    "sourceMap": false
+  },
+  "include": ["webhook", "admin-bulk", "tests/support", "demo"]
+}
