@@ -22,7 +22,7 @@ This is a lab. It has never run against a client store or any live Shopify store
 
 How I handle risky bulk work: preview first, change only what differs, stop safely, report what happened. On a real store the first step would be a dry run against a development copy, with your sign-off before any write.
 
-Code and tests: <REPO_URL, to be added when the repository is published>
+Code and tests: https://github.com/ridgenelson1234-debug/shopify-commerce-lab
 
 ## Copy blocks
 
@@ -30,11 +30,11 @@ These are drafts. Replace the placeholder link only after the repository is publ
 
 **Upwork (profile or portfolio item)**
 
-Shopify systems lab: a tested TypeScript sample of safe bulk metafield and collection updates (dry run, diff, resumable, throttle-aware) and webhook handling (signature check, dedupe, retry, dead letter). Lab code, not client work, run against a local mock only. Code and tests: <REPO_URL>
+Shopify systems lab: a tested TypeScript sample of safe bulk metafield and collection updates (dry run, diff, resumable, throttle-aware) and webhook handling (signature check, dedupe, retry, dead letter). Lab code, not client work, run against a local mock only. Code and tests: https://github.com/ridgenelson1234-debug/shopify-commerce-lab
 
 **Storetasker (profile or application note)**
 
-For catalog and integration tickets I work dry run first: I show the diff, change only what differs, and keep a checkpoint so a stopped job resumes. Webhooks get signature checks, dedupe and retries. A tested sample is here, labelled as a lab and not client work: <REPO_URL>
+For catalog and integration tickets I work dry run first: I show the diff, change only what differs, and keep a checkpoint so a stopped job resumes. Webhooks get signature checks, dedupe and retries. A tested sample is here, labelled as a lab and not client work: https://github.com/ridgenelson1234-debug/shopify-commerce-lab
 
 **Commerce page**
 
